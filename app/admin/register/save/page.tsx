@@ -17,15 +17,15 @@ export default function NewCourse({
         "use server"
         const nome = formData.get("nome") as string;
         const email = formData.get("email") as string;
-        await sql`INSERT INTO coordenador (nome, email) VALUES(${nome}, ${email})`
+        await sql`INSERT INTO aluno (nome, email) VALUES(${nome}, ${email})`
         console.log("Acessou a função")
     }
     return (
         <div>
-            <h1 className="text-white text-center text-4xl">Cadastrar Coordenador</h1>
+            <h1 className="text-white text-center text-4xl">Cadastrar Aluno</h1>
             <form>
-                <input type="text" name="nome" placeholder="Nome do Coordenador"/><br/><br/>
-                <input type="text" name="email" placeholder="Email do coordenador"/> <br/><br/>
+                <input type="text" name="nome" placeholder="Nome do aluno"/><br/><br/>
+                <input type="text" name="email" placeholder="Email do aluno"/> <br/><br/>
                 <button formAction={saveCourse} className="text-black">Salvar</button>
                 <br/>
             </form>
