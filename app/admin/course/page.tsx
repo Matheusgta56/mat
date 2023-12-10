@@ -8,7 +8,7 @@ export default async function ListAluno() {
         "use server"
         const id = formData.get("id") as string;
         await sql`DELETE from aluno where id=${id}`
-        revalidatePath("/admin/register/save")
+        revalidatePath("/admin/course/new")
     }
     const { rows } = await sql`SELECT * from aluno`;
     return (
