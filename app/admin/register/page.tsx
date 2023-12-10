@@ -3,17 +3,17 @@ import { revalidatePath } from "next/cache";
 
 export const revalidate =0
 
-export default async function ListRegister() {
+export default async function ListAluno() {
     async function deleteAluno(formData: FormData){
         "use server"
         const id = formData.get("id") as string;
         await sql`DELETE from aluno where id=${id}`
-        revalidatePath("/admin/register")
+        revalidatePath("/admin/register/save")
     }
     const { rows } = await sql`SELECT * from aluno`;
     return (
         <div>
-            <h1 className="text-center text-white">Lista de Aluno</h1>
+            <h1 className="text-center text-black">Lista de Aluno</h1>
 
             <table>
                 <thead>

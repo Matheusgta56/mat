@@ -1,35 +1,26 @@
 import { sql } from "@vercel/postgres";
 import { useSearchParams } from "next/navigation";
 
-export const revalidate =0
+export const revalidate = 0
 
-export default function NewCourse({
-    searchParams,
-  }: {
-    searchParams?: {
-      url?: string;  
-    };
-  }){
-    
-    const urlImage = searchParams?.url || '';
+export default function NewAluno(){
+         async function saveAluno(formData: FormData){
+         "use server"
+         const nome = formData.get("nome") as string;
+         const email = formData.get("email") as string;
+         await sql`INSERT INTO aluno (nome, email) VALUES(${nome}, ${email})`
+    console.log("nome, email")
+  }
+return (
+  <div>
+    <h1 className="text-black text-center text-4xl">Cadastrar Aluno</h1>
+    <form>
+      <input type="text" name="nome" placeholder="Nome do aluno" /><br /><br />
+      <input type="text" name="email" placeholder="Email do aluno" /> <br /><br />
+      <button formAction={saveAluno} className="text-black">Salvar</button>
+      <br />
+    </form>
+  </div>
 
-    async function saveCourse(formData: FormData){
-        "use server"
-        const nome = formData.get("nome") as string;
-        const email = formData.get("email") as string;
-        await sql`INSERT INTO aluno (nome, email) VALUES(${nome}, ${email})`
-        console.log("Acessou a função")
-    }
-    return (
-        <div>
-            <h1 className="text-white text-center text-4xl">Cadastrar Aluno</h1>
-            <form>
-                <input type="text" name="nome" placeholder="Nome do aluno"/><br/><br/>
-                <input type="text" name="email" placeholder="Email do aluno"/> <br/><br/>
-                <button formAction={saveCourse} className="text-black">Salvar</button>
-                <br/>
-            </form>
-        </div>
-
-    )
+)
 }

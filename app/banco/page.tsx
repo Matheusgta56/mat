@@ -5,7 +5,7 @@ export default async function Cart({
 } : {
   params: { user: string }
 }): Promise<JSX.Element> {
-  const { rows } = await sql`select * from aluno`;
+  const { rows } = await sql`SELECT * from aluno`;
 
   return (
     <div>
